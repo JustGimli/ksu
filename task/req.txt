@@ -1,2 +1,3 @@
 sudo apt install libasound-dev -- PyAudio ALSA SDK (advansed linux sound architecture) for linix
 sudo apt-get install alsa-utils
+https://alphacephei.com/vosk/models -- vosk model
