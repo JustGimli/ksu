@@ -4,7 +4,7 @@ from vosk import KaldiRecognizer,Model
 import wave
 import json 
 import os
-
+# z
 
 def get_audio():
 
