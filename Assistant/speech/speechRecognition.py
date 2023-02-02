@@ -15,7 +15,7 @@ def get_text(): # on button
             audio = r.listen(source=source, timeout=3)
             text = r.recognize_google(audio_data=audio, language='ru')
 
-            return text
+            return text.lower()
         except sr.WaitTimeoutError as e:
             print("You dont say something")
         except sr.UnknownValueError:
