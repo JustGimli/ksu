@@ -1,38 +1,29 @@
-from speech import speechRecognition, text_to_speech
-from API import get_price,get_time,google_search,get_news
+import speech_recognition as sr
 
+from logic.ckeks import simple_cheks
+from speech import text_to_speech
 # logic press on button
 
-while True:
-    # text_to_speech.voise_speech("Я вас внимательно слушаю")
-    try:
-        text = speechRecognition.get_text().lower()
-    except:
-        text_to_speech.voise_speech("повторите свой вопрос")
-        continue
+def main():  # enabled 2 micro BAG
+    r = sr.Recognizer()
+    r.dynamic_energy_threshold = True
+    # r.pause_threshold = 5 # when enabled 
+    r.energy_threshold = 40
 
-    if "хабр" in text:
-        get_news.get_habr()
-    elif "цена" in text or "цену" in text:
-        text = text.replace("цена", "")
-        
-        if "доллара"  in text:
-            result = get_price.get_currency(query="USD")
-            answer = f"цена доллара: {result['price']} белорусских рубля"
-        elif "евро" in text:
-            result = get_price.get_currency(query="EUR")
-            answer = f"цена евро: {result['price']} белорусских рубля"
-        else:
-            pass # API FOR CRYPTO
-    elif "время" in text:
-        time = get_time.get_time_now()
-        answer = f"сейчас {time}"
-    elif "число" in text:
-        data = get_time.get_date_now()
-        answer = f"сегодня {data}"
-    elif "поиск" in text:
-        google_search.get_links(text.replace("поиск", ""))
-    else:
-        answer = "извините неизвестный запрос"
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source=source,) 
+    
+        while True:
+            try:
+                audio = r.listen(source=source, phrase_time_limit=3)
+                text = r.recognize_google(audio_data=audio, language='ru').lower()
+                if "ксюша" in text:
+                    simple_cheks()
+            except Exception as e:
+                print(e)
 
-    text_to_speech.voise_speech(answer)
+
+
+
+if '__main__' == __name__:
+    main()
