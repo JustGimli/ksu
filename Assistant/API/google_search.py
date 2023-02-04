@@ -1,7 +1,8 @@
 import requests
+from requests.exceptions import Timeout, TooManyRedirects, ConnectionError
 from bs4 import BeautifulSoup
 
-def get_links(query="google") -> dict:
+def get_links(query="python web dev") -> dict:
     query = query.replace(" ", "+")
     result = []
 
@@ -11,12 +12,8 @@ def get_links(query="google") -> dict:
     
     try:
         resp = requests.get(URL, headers=headers)
-    except requests.ConnectionError as e:
-        result = {
-            "title": "Connection Error",
-            "link": "None"
-        }
-        return result
+    except  (TooManyRedirects, Timeout, ConnectionError) as e:
+        print(e) # raise connection handler as e:
     
     if resp.status_code == 200:
         soup = BeautifulSoup(resp.content, "lxml")
@@ -36,3 +33,4 @@ def get_links(query="google") -> dict:
             "link": "None"
         }
         return result
+
