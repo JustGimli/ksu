@@ -22,14 +22,34 @@ def get_currency(query='USD')-> dict:
 
         result = {
             "title": query,
-            "price": byn_price
+            "price": round(byn_price, 2)
         }
+
+        return result
         
-        print(byn_price)
     except (TooManyRedirects, Timeout, ConnectionError) as e:
         print(e) # raise connection handler
     except Exception as e:
         print("Unknown error")
+
+
+# def get_currency(query='BTC')-> dict:
+#     API_KEY = _get_api_token("exchange_api")
+
+
+#     try:
+#         data = requests.get(f"https://v6.exchangerate-api.com/v6/{API_KEY}/pair/{CURNCY}/BYN").json()        
+#         byn_price = data.get("conversion_rate")
+
+#         result = {
+#             "title": query,
+#             "price": byn_price
+#         }
+        
+#     except (TooManyRedirects, Timeout, ConnectionError) as e:
+#         print(e) # raise connection handler
+#     except Exception as e:
+#         print("Unknown error")
 
 
 def _get_api_token(name)->str:

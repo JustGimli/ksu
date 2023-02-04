@@ -6,6 +6,6 @@ def get_time_now():
 
 
 def get_date_now():
-    return datetime.now().date()
+    return datetime.now().today()
 
 print(get_date_now())

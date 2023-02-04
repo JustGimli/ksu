@@ -1,6 +1,4 @@
 import speech_recognition as sr
-import mute_alsa
-
 
 def get_text(): # on button
     r = sr.Recognizer()
