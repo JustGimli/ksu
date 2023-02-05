@@ -13,3 +13,6 @@ def open_program(text)->str:
     
     return False
 
+def shut_down():
+    os.system("shutdown")
+

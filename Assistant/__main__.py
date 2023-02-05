@@ -4,7 +4,7 @@ from logic.ckeks import simple_cheks
 from speech import text_to_speech
 # logic press on button
 
-def main():  # enabled 2 micro BAG
+def main():  # enabled 2 micro BAG``
     r = sr.Recognizer()
     r.dynamic_energy_threshold = True
     # r.pause_threshold = 5 # when enabled 

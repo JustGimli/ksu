@@ -3,6 +3,8 @@ from API import get_price,get_time,google_search,get_news, work_os
 
 
 def simple_cheks():
+    power_off = ["выключить", "выключить"]
+
 
     while True:
         text_to_speech.voise_speech("Я вас внимательно слушаю")
@@ -40,6 +42,8 @@ def simple_cheks():
                 answer = f"Программа {text_comp} была запущена"
             else:
                 answer = "Извините, нет такой программы"
+        elif [str for str in power_off if str in text]:
+            work_os.shut_down()
 
         try:
 
